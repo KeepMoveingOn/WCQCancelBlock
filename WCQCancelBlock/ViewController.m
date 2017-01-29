@@ -36,21 +36,18 @@
 #pragma mark - Event Mthods
 - (void)startAction {
     
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"currentThread == %@",[NSThread currentThread]);
-        [self.blockOperation start];
-//    });
+//    [self.blockOperation start];
 //    [self.invocationOperation start];
     
-//    self.operationQueue;
+    self.operationQueue;
 }
 
 - (void)cancelAction {
     
-    [self.blockOperation cancel];
+//    [self.blockOperation cancel];
 //    [self.invocationOperation cancel];
     
-//    [self.operationQueue cancelAllOperations];
+    [self.operationQueue cancelAllOperations];
 }
 
 #pragma mark - Getter Methods
@@ -121,15 +118,15 @@
         
         _operationQueue = [[NSOperationQueue alloc] init];
 //        [_operationQueue addOperation:self.invocationOperation];
-        [_operationQueue addOperation:self.blockOperation];
-//        [_operationQueue addOperation:self.cancelBlock];
+//        [_operationQueue addOperation:self.blockOperation];
+        [_operationQueue addOperation:self.cancelBlock];
     }
     return _operationQueue;
 }
 
 - (void)run:(NSOperation *)operation {
+    
     NSLog(@"currentThread == %@",[NSThread currentThread]);
-
     if (!operation) operation = self.invocationOperation;
 //    if ([operation isCancelled]) return;
     for (NSInteger i = 0; i < 5; i++) {
